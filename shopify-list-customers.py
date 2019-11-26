@@ -161,7 +161,7 @@ def flexio_handler(flex):
         for customer in customers:
             row = []
             for p in shopify_properties:
-                row.append(customer.get(p,'') or '')
+                row.append(deep_get(customer,p,'') or '')
             result.append(row)
 
         # return the results
@@ -171,6 +171,31 @@ def flexio_handler(flex):
 
     except:
         raise RuntimeError
+
+# taken from 'pydash' library
+# https://pydash.readthedocs.io/en/latest/deeppath.html
+# https://github.com/dgilland/pydash/blob/develop/src/pydash/objects.py#L477
+def deep_get(obj, path, default=None):
+    if default is NoValue:
+        # When NoValue given for default, then this method will raise if path
+        # is not present in obj.
+        sentinel = default
+    else:
+        # When a returnable default is given, use a sentinel value to detect
+        # when base_get() returns a default value for a missing path so we can
+        # exit early from the loop and not mistakenly iterate over the default.
+        sentinel = object()
+
+    for key in to_path(path):
+        obj = base_get(obj, key, default=sentinel)
+
+        if obj is sentinel:
+            # Path doesn't exist so set return obj to the default.
+            obj = default
+            break
+
+    return obj
+
 
 def validator_list(field, value, error):
     if isinstance(value, str):
