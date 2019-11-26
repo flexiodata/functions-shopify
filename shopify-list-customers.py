@@ -170,14 +170,33 @@ def flexio_handler(flex):
     except:
         raise RuntimeError
 
+def safe_list_get(_list, idx, default):
+    try:
+        return _list[idx]
+    except IndexError:
+        return default
+
 def deep_get(obj, path, default=None):
-    keys = path.split('.')
-    for key in keys:
-        if isinstance(obj, dict):
-            obj = obj.get(key, default)
-        else:
-            return default
-    return obj
+    try:
+        keys = path.split('.')
+        for key in keys:
+            if key.find('[') >= 0:
+                parts = key.split('[')
+                key = parts[0]
+                obj = obj.get(key, default)
+                if isinstance(obj, list):
+                    idx = int(parts[1].strip(']'))
+                    obj = safe_list_get(obj, idx, default)
+                else:
+                    return default
+            if isinstance(obj, dict):
+                obj = obj.get(key, default)
+            else:
+                return default
+        return obj
+
+    except:
+        return default
 
 def validator_list(field, value, error):
     if isinstance(value, str):
