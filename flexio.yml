@@ -1,0 +1,18 @@
+title: Shopify Function Pack
+description: Functions for accessing your Shopify info
+image:
+  src: https://logo.clearbit.com/shopify.com
+  alt: Shopify logo
+functions:
+  - path: shopify-list-products.py
+prompts:
+  - element: auth
+    name: auth
+    title: Connect to Shopify
+    description: |
+      Connect to your Shopify account to connect the functions to your data
+    connection:
+      connection_type: shopify
+    form_items:
+      - name: shopify_connection
+        value: ''
