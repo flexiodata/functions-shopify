@@ -37,7 +37,6 @@
 #     * `address2`: An additional field for the customer's mailing address.
 #     * `city`: The customer's city, town, or village.
 #     * `company`: The customer's company.
-#     * `country`: The customer's country.
 #     * `country_code`: The two-letter country code corresponding to the customer's country.
 #     * `country_name`: The customer's normalized country name.
 #     * `province`: The customer's region name. Typically a province, a state, or a prefecture.
@@ -121,7 +120,7 @@ def flexio_handler(flex):
     property_map['address2'] = 'default_address.address2'
     property_map['city'] = 'default_address.city'
     property_map['company'] = 'default_address.company'
-    property_map['country'] = 'default_address.country'
+    #property_map['country'] = 'default_address.country'
     property_map['country_code'] = 'default_address.country_code'
     property_map['country_name'] = 'default_address.country_name'
     property_map['province'] = 'default_address.province'
