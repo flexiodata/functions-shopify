@@ -4,6 +4,7 @@ image:
   src: https://logo.clearbit.com/shopify.com
   alt: Shopify logo
 functions:
+  - path: shopify-list-customers.py
   - path: shopify-list-products.py
 prompts:
   - element: auth
