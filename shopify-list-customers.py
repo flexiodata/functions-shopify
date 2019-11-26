@@ -172,6 +172,16 @@ def flexio_handler(flex):
     except:
         raise RuntimeError
 
+class _NoValue(object):
+    """Represents an unset value. Used to differentiate between an explicit
+    ``None`` and an unset value.
+    """
+    pass
+
+# Singleton object that differentiates between an explicit ``None`` value and
+# an unset value.
+NoValue = _NoValue()
+
 # taken from 'pydash' library
 # https://pydash.readthedocs.io/en/latest/deeppath.html
 # https://github.com/dgilland/pydash/blob/develop/src/pydash/objects.py#L477
@@ -195,7 +205,6 @@ def deep_get(obj, path, default=None):
             break
 
     return obj
-
 
 def validator_list(field, value, error):
     if isinstance(value, str):
