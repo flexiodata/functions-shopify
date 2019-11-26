@@ -172,38 +172,13 @@ def flexio_handler(flex):
     except:
         raise RuntimeError
 
-class _NoValue(object):
-    """Represents an unset value. Used to differentiate between an explicit
-    ``None`` and an unset value.
-    """
-    pass
-
-# Singleton object that differentiates between an explicit ``None`` value and
-# an unset value.
-NoValue = _NoValue()
-
-# taken from 'pydash' library
-# https://pydash.readthedocs.io/en/latest/deeppath.html
-# https://github.com/dgilland/pydash/blob/develop/src/pydash/objects.py#L477
 def deep_get(obj, path, default=None):
-    if default is NoValue:
-        # When NoValue given for default, then this method will raise if path
-        # is not present in obj.
-        sentinel = default
-    else:
-        # When a returnable default is given, use a sentinel value to detect
-        # when base_get() returns a default value for a missing path so we can
-        # exit early from the loop and not mistakenly iterate over the default.
-        sentinel = object()
-
-    for key in to_path(path):
-        obj = base_get(obj, key, default=sentinel)
-
-        if obj is sentinel:
-            # Path doesn't exist so set return obj to the default.
-            obj = default
-            break
-
+    keys = path.split('.')
+    for key in keys:
+        if isinstance(obj, dict):
+            obj = obj.get(key, default)
+        else:
+            return default
     return obj
 
 def validator_list(field, value, error):
