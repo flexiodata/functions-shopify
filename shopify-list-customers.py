@@ -36,7 +36,16 @@
 #     * `tax_exemptions`: TODO
 #     * `admin_graphql_api_id`: TODO
 #     * `addresses`: TODO
-#     * `default_address`: TODO
+#     * `default_address_address1`: TODO
+#     * `default_address_address2`: TODO
+#     * `default_address_city`: TODO
+#     * `default_address_company`: TODO
+#     * `default_address_country`: TODO
+#     * `default_address_province`: TODO
+#     * `default_address_province_code`: TODO
+#     * `default_address_zip`: TODO
+#     * `default_address_country_code`: TODO
+#     * `default_address_country_name`: TODO
 # ---
 
 import json
