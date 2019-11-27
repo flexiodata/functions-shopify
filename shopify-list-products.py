@@ -157,7 +157,7 @@ def flexio_handler(flex):
         for product in products:
             row = []
             for p in shopify_properties:
-                row.append(product.get(p,'') or '')
+                row.append(deep_get(product,p,'') or '')
             result.append(row)
 
         # return the results
