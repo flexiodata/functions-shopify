@@ -12,35 +12,30 @@
 # examples:
 # notes: |
 #   The following properties are available:
-#     * `id`: TODO
-#     * `title`: TODO
-#     * `body_html`: TODO
-#     * `vendor`: TODO
-#     * `product_type`: TODO
-#     * `created_at`: TODO
-#     * `handle`: TODO
-#     * `updated_at`: TODO
-#     * `published_at`: TODO
-#     * `template_suffix`: TODO
-#     * `tags`: TODO
-#     * `published_scope`: TODO
-#     * `product_id`: TODO
-#     * `price`: TODO
-#     * `sku`: TODO
-#     * `position`: TODO
-#     * `inventory_policy`: TODO
-#     * `compare_at_price`: TODO
-#     * `fulfillment_service`: TODO
-#     * `inventory_management`: TODO
-#     * `taxable`: TODO
-#     * `barcode`: TODO
-#     * `grams`: TODO
-#     * `weight`: TODO
-#     * `weight_unit`: TODO
-#     * `inventory_item_id`: TODO
-#     * `inventory_quantity`: TODO
-#     * `old_inventory_quantity`: TODO
-#     * `requires_shipping`: TODO
+#     * `id`: A unique identifier for the product.
+#     * `title`: The name of the product.
+#     * `body_html`: A description of the product. Supports HTML formatting.
+#     * `vendor`: The name of the product's vendor.
+#     * `product_type`: A categorization for the product used for filtering and searching products.
+#     * `created_at`: The date and time (ISO 8601 format) when the product was created.
+#     * `handle`: A unique human-friendly string for the product. Automatically generated from the product's **title**.
+#     * `updated_at`: The date and time (ISO 8601 format) when the product was last modified.
+#     * `published_at`: The date and time (ISO 8601 format) when the product was published.
+#     * `tags`: A string of comma-separated tags that are used for filtering and search.
+#     * `published_scope`: Whether the product is published to the Point of Sale channel: **web** or **global**
+#     * `product_id`: The unique numeric identifier for the product.
+#     * `price`: The price of the product variant.
+#     * `sku`: A unique identifier for the product variant in the shop.
+#     * `inventory_policy`: Whether customers are allowed to place an order for the product variant when it's out of stock: **deny** or **continue**
+#     * `compare_at_price`: The original price of the item before an adjustment or a sale.
+#     * `taxable`: Whether a tax is charged when the product variant is sold.
+#     * `barcode`: The barcode, UPC, or ISBN number for the product.
+#     * `grams`: The weight of the product variant in grams.
+#     * `weight`: The weight of the product variant in the unit system specified with **weight_unit**.
+#     * `weight_unit`: The unit of measurement that applies to the product variant's weight.
+#     * `inventory_item_id`: The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
+#     * `inventory_quantity`: An aggregate of inventory across all locations.
+#     * `requires_shipping`: Whether a customer needs to provide a shipping address when placing an order for the product variant.
 # ---
 
 import json
@@ -100,7 +95,7 @@ def flexio_handler(flex):
     property_map['handle'] = 'handle'
     property_map['updated_at'] = 'updated_at'
     property_map['published_at'] = 'published_at'
-    property_map['template_suffix'] = 'template_suffix'
+    #property_map['template_suffix'] = 'template_suffix'
     property_map['tags'] = 'tags'
     property_map['published_scope'] = 'published_scope'
 
@@ -108,11 +103,11 @@ def flexio_handler(flex):
     property_map['product_id'] = 'variants[0].product_id'
     property_map['price'] = 'variants[0].price'
     property_map['sku'] = 'variants[0].sku'
-    property_map['position'] = 'variants[0].position'
+    #property_map['position'] = 'variants[0].position'
     property_map['inventory_policy'] = 'variants[0].inventory_policy'
     property_map['compare_at_price'] = 'variants[0].compare_at_price'
-    property_map['fulfillment_service'] = 'variants[0].fulfillment_service'
-    property_map['inventory_management'] = 'variants[0].inventory_management'
+    #property_map['fulfillment_service'] = 'variants[0].fulfillment_service'
+    #property_map['inventory_management'] = 'variants[0].inventory_management'
     property_map['taxable'] = 'variants[0].taxable'
     property_map['barcode'] = 'variants[0].barcode'
     property_map['grams'] = 'variants[0].grams'
@@ -120,7 +115,7 @@ def flexio_handler(flex):
     property_map['weight_unit'] = 'variants[0].weight_unit'
     property_map['inventory_item_id'] = 'variants[0].inventory_item_id'
     property_map['inventory_quantity'] = 'variants[0].inventory_quantity'
-    property_map['old_inventory_quantity'] = 'variants[0].old_inventory_quantity'
+    #property_map['old_inventory_quantity'] = 'variants[0].old_inventory_quantity'
     property_map['requires_shipping'] = 'variants[0].requires_shipping'
 
 
