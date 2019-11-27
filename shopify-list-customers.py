@@ -189,7 +189,7 @@ def deep_get(obj, path, default=None):
                     obj = safe_list_get(obj, idx, default)
                 else:
                     return default
-            if isinstance(obj, dict):
+            elif isinstance(obj, dict):
                 obj = obj.get(key, default)
             else:
                 return default
