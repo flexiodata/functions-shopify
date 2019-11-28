@@ -2,7 +2,7 @@
 # ---
 # name: shopify-list-customers
 # deployed: true
-# title: Shopify Products List
+# title: Shopify Customers List
 # description: Returns a list of customers from Shopify
 # params:
 #   - name: properties
