@@ -36,7 +36,7 @@
 #     description: The number of orders associated with this customer.
 #   - name: state
 #     type: string
-#     description: The state of the customer's account with a shop: **disabled**, **invited**, **enabled** or **declined**
+#     description: The state of the customer's account with a shop; one of **disabled**, **invited**, **enabled** or **declined**
 #   - name: total_spent
 #     type: string
 #     description: The total amount of money that the customer has spent across their order history.
@@ -69,10 +69,10 @@
 #     description: The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email.
 #   - name: marketing_opt_in_level
 #     type: string
-#     description: The marketing subscription opt-in level (as described by the M3AAWG best practices guideline) that the customer gave when they consented to receive marketing material by email: **single_opt_in**, **confirmed_opt_in** or **unknown**
+#     description: The marketing subscription opt-in level (as described by the M3AAWG best practices guideline) that the customer gave when they consented to receive marketing material by email; one of **single_opt_in**, **confirmed_opt_in** or **unknown**
 #   - name: tax_exemptions
 #     type: string
-#     description: Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. See [Shopify customer properties](https://help.shopify.com/en/api/reference/customers/customer#index-2019-10) for a list of available values.
+#     description: "Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. See [Shopify customer properties](https://help.shopify.com/en/api/reference/customers/customer#index-2019-10) for a list of available values."
 #   - name: address1
 #     type: string
 #     description: The first line of the customer's mailing address.

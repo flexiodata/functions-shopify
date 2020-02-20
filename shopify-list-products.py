@@ -42,7 +42,7 @@
 #     description: A string of comma-separated tags that are used for filtering and search.
 #   - name: published_scope
 #     type: string
-#     description: Whether the product is published to the Point of Sale channel: **web** or **global**
+#     description: Whether the product is published to the Point of Sale channel; one of **web** or **global**
 #   - name: product_id
 #     type: string
 #     description: The unique numeric identifier for the product.
@@ -54,7 +54,7 @@
 #     description: A unique identifier for the product variant in the shop.
 #   - name: inventory_policy
 #     type: string
-#     description: Whether customers are allowed to place an order for the product variant when it's out of stock: **deny** or **continue**
+#     description: Whether customers are allowed to place an order for the product variant when it's out of stock; one of **deny** or **continue**
 #   - name: compare_at_price
 #     type: string
 #     description: The original price of the item before an adjustment or a sale.
