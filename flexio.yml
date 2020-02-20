@@ -1,7 +1,7 @@
 title: Shopify Function Pack
 description: Functions for accessing your Shopify info
 image:
-  src: https://logo.clearbit.com/shopify.com
+  src: https://static.flex.io/assets/logos2/shopify.png
   alt: Shopify logo
 functions:
   - path: shopify-list-customers.py
