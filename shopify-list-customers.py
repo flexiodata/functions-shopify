@@ -7,41 +7,100 @@
 # params:
 #   - name: properties
 #     type: array
-#     description: The properties to return (defaults to all properties). See "Notes" for a listing of the available properties.
+#     description: The properties to return (defaults to all properties). See "Returns" for a listing of the available properties.
 #     required: false
+# returns:
+#   - name: id
+#     type: string
+#     description: A unique identifier for the customer.
+#   - name: email
+#     type: string
+#     description: The unique email address of the customer.
+#   - name: accepts_marketing
+#     type: string
+#     description: Whether the customer has consented to receive marketing material via email.
+#   - name: created_at
+#     type: string
+#     description: The date and time (ISO 8601 format) when the customer was created.
+#   - name: updated_at
+#     type: string
+#     description: The date and time (ISO 8601 format) when the customer information was last updated.
+#   - name: first_name
+#     type: string
+#     description: The customer's first name.
+#   - name: last_name
+#     type: string
+#     description: The customer's last name.
+#   - name: orders_count
+#     type: string
+#     description: The number of orders associated with this customer.
+#   - name: state
+#     type: string
+#     description: The state of the customer's account with a shop: **disabled**, **invited**, **enabled** or **declined**
+#   - name: total_spent
+#     type: string
+#     description: The total amount of money that the customer has spent across their order history.
+#   - name: note
+#     type: string
+#     description: A note about the customer.
+#   - name: verified_email
+#     type: string
+#     description: Whether the customer has verified their email address.
+#   - name: tax_exempt
+#     type: string
+#     description: Whether the customer is exempt from paying taxes on their order. If **true**, then taxes won't be applied to an order at checkout. If **false**, then taxes will be applied at checkout.
+#   - name: phone
+#     type: string
+#     description: The unique phone number (E.164 format) for this customer.
+#   - name: tags
+#     type: string
+#     description: Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values.
+#   - name: last_order_id
+#     type: string
+#     description: The ID of the customer's last order.
+#   - name: last_order_name
+#     type: string
+#     description: The name of the customer's last order. This is directly related to the name field on the Order resource.
+#   - name: currency
+#     type: string
+#     description: The three-letter code (ISO 4217 format) for the currency that the customer used when they paid for their last order.
+#   - name: accepts_marketing_updated_at
+#     type: string
+#     description: The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email.
+#   - name: marketing_opt_in_level
+#     type: string
+#     description: The marketing subscription opt-in level (as described by the M3AAWG best practices guideline) that the customer gave when they consented to receive marketing material by email: **single_opt_in**, **confirmed_opt_in** or **unknown**
+#   - name: tax_exemptions
+#     type: string
+#     description: Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. See [Shopify customer properties](https://help.shopify.com/en/api/reference/customers/customer#index-2019-10) for a list of available values.
+#   - name: address1
+#     type: string
+#     description: The first line of the customer's mailing address.
+#   - name: address2
+#     type: string
+#     description: An additional field for the customer's mailing address.
+#   - name: city
+#     type: string
+#     description: The customer's city, town, or village.
+#   - name: company
+#     type: string
+#     description: The customer's company.
+#   - name: country_code
+#     type: string
+#     description: The two-letter country code corresponding to the customer's country.
+#   - name: country_name
+#     type: string
+#     description: The customer's normalized country name.
+#   - name: province
+#     type: string
+#     description: The customer's region name. Typically a province, a state, or a prefecture.
+#   - name: province_code
+#     type: string
+#     description: The two-letter code for the customer's region.
+#   - name: zip
+#     type: string
+#     description: The customer's postal code, also known as zip, postcode, Eircode, etc.
 # examples:
-# notes: |
-#   The following properties are available:
-#     * `id`: A unique identifier for the customer.
-#     * `email`: The unique email address of the customer.
-#     * `accepts_marketing`: Whether the customer has consented to receive marketing material via email.
-#     * `created_at`: The date and time (ISO 8601 format) when the customer was created.
-#     * `updated_at`: The date and time (ISO 8601 format) when the customer information was last updated.
-#     * `first_name`: The customer's first name.
-#     * `last_name`: The customer's last name.
-#     * `orders_count`: The number of orders associated with this customer.
-#     * `state`: The state of the customer's account with a shop: **disabled**, **invited**, **enabled** or **declined**
-#     * `total_spent`: The total amount of money that the customer has spent across their order history.
-#     * `note`: A note about the customer.
-#     * `verified_email`: Whether the customer has verified their email address.
-#     * `tax_exempt`: Whether the customer is exempt from paying taxes on their order. If **true**, then taxes won't be applied to an order at checkout. If **false**, then taxes will be applied at checkout.
-#     * `phone`: The unique phone number (E.164 format) for this customer.
-#     * `tags`: Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values.
-#     * `last_order_id`: The ID of the customer's last order.
-#     * `last_order_name`: The name of the customer's last order. This is directly related to the name field on the Order resource.
-#     * `currency`: The three-letter code (ISO 4217 format) for the currency that the customer used when they paid for their last order.
-#     * `accepts_marketing_updated_at`: The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email.
-#     * `marketing_opt_in_level`: The marketing subscription opt-in level (as described by the M3AAWG best practices guideline) that the customer gave when they consented to receive marketing material by email: **single_opt_in**, **confirmed_opt_in** or **unknown**
-#     * `tax_exemptions`: Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. See [Shopify customer properties](https://help.shopify.com/en/api/reference/customers/customer#index-2019-10) for a list of available values.
-#     * `address1`: The first line of the customer's mailing address.
-#     * `address2`: An additional field for the customer's mailing address.
-#     * `city`: The customer's city, town, or village.
-#     * `company`: The customer's company.
-#     * `country_code`: The two-letter country code corresponding to the customer's country.
-#     * `country_name`: The customer's normalized country name.
-#     * `province`: The customer's region name. Typically a province, a state, or a prefecture.
-#     * `province_code`: The two-letter code for the customer's region.
-#     * `zip`: The customer's postal code, also known as zip, postcode, Eircode, etc.
 # ---
 
 import json

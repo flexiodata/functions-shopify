@@ -7,35 +7,82 @@
 # params:
 #   - name: properties
 #     type: array
-#     description: The properties to return (defaults to all properties). See "Notes" for a listing of the available properties.
+#     description: The properties to return (defaults to all properties). See "Returns" for a listing of the available properties.
 #     required: false
+# returns:
+#   - name: id
+#     type: string
+#     description: A unique identifier for the product.
+#   - name: title
+#     type: string
+#     description: The name of the product.
+#   - name: body_html
+#     type: string
+#     description: A description of the product. Supports HTML formatting.
+#   - name: vendor
+#     type: string
+#     description: The name of the product's vendor.
+#   - name: product_type
+#     type: string
+#     description: A categorization for the product used for filtering and searching products.
+#   - name: created_at
+#     type: string
+#     description: The date and time (ISO 8601 format) when the product was created.
+#   - name: handle
+#     type: string
+#     description: A unique human-friendly string for the product. Automatically generated from the product's **title**.
+#   - name: updated_at
+#     type: string
+#     description: The date and time (ISO 8601 format) when the product was last modified.
+#   - name: published_at
+#     type: string
+#     description: The date and time (ISO 8601 format) when the product was published.
+#   - name: tags
+#     type: string
+#     description: A string of comma-separated tags that are used for filtering and search.
+#   - name: published_scope
+#     type: string
+#     description: Whether the product is published to the Point of Sale channel: **web** or **global**
+#   - name: product_id
+#     type: string
+#     description: The unique numeric identifier for the product.
+#   - name: price
+#     type: string
+#     description: The price of the product variant.
+#   - name: sku
+#     type: string
+#     description: A unique identifier for the product variant in the shop.
+#   - name: inventory_policy
+#     type: string
+#     description: Whether customers are allowed to place an order for the product variant when it's out of stock: **deny** or **continue**
+#   - name: compare_at_price
+#     type: string
+#     description: The original price of the item before an adjustment or a sale.
+#   - name: taxable
+#     type: string
+#     description: Whether a tax is charged when the product variant is sold.
+#   - name: barcode
+#     type: string
+#     description: The barcode, UPC, or ISBN number for the product.
+#   - name: grams
+#     type: string
+#     description: The weight of the product variant in grams.
+#   - name: weight
+#     type: string
+#     description: The weight of the product variant in the unit system specified with **weight_unit**.
+#   - name: weight_unit
+#     type: string
+#     description: The unit of measurement that applies to the product variant's weight.
+#   - name: inventory_item_id
+#     type: string
+#     description: The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
+#   - name: inventory_quantity
+#     type: string
+#     description: An aggregate of inventory across all locations.
+#   - name: requires_shipping
+#     type: string
+#     description: Whether a customer needs to provide a shipping address when placing an order for the product variant.
 # examples:
-# notes: |
-#   The following properties are available:
-#     * `id`: A unique identifier for the product.
-#     * `title`: The name of the product.
-#     * `body_html`: A description of the product. Supports HTML formatting.
-#     * `vendor`: The name of the product's vendor.
-#     * `product_type`: A categorization for the product used for filtering and searching products.
-#     * `created_at`: The date and time (ISO 8601 format) when the product was created.
-#     * `handle`: A unique human-friendly string for the product. Automatically generated from the product's **title**.
-#     * `updated_at`: The date and time (ISO 8601 format) when the product was last modified.
-#     * `published_at`: The date and time (ISO 8601 format) when the product was published.
-#     * `tags`: A string of comma-separated tags that are used for filtering and search.
-#     * `published_scope`: Whether the product is published to the Point of Sale channel: **web** or **global**
-#     * `product_id`: The unique numeric identifier for the product.
-#     * `price`: The price of the product variant.
-#     * `sku`: A unique identifier for the product variant in the shop.
-#     * `inventory_policy`: Whether customers are allowed to place an order for the product variant when it's out of stock: **deny** or **continue**
-#     * `compare_at_price`: The original price of the item before an adjustment or a sale.
-#     * `taxable`: Whether a tax is charged when the product variant is sold.
-#     * `barcode`: The barcode, UPC, or ISBN number for the product.
-#     * `grams`: The weight of the product variant in grams.
-#     * `weight`: The weight of the product variant in the unit system specified with **weight_unit**.
-#     * `weight_unit`: The unit of measurement that applies to the product variant's weight.
-#     * `inventory_item_id`: The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
-#     * `inventory_quantity`: An aggregate of inventory across all locations.
-#     * `requires_shipping`: Whether a customer needs to provide a shipping address when placing an order for the product variant.
 # ---
 
 import json
