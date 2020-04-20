@@ -10,11 +10,11 @@ For example, with this Excel and Google Sheets add-on you can:
 Here are some examples:
 
 ```
-=FLEX("YOUR_TEAM_NAME/shopify-list-customers")
+=FLEX("YOUR_TEAM_NAME/shopify-customers")
 ```
 
 ```
-=FLEX("YOUR_TEAM_NAME/shopify-list-products")
+=FLEX("YOUR_TEAM_NAME/shopify-products")
 ```
 
 ## Prerequisites
