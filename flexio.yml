@@ -4,8 +4,8 @@ image:
   src: https://static.flex.io/assets/logos2/shopify.png
   alt: Shopify logo
 functions:
-  - path: shopify-list-customers.py
-  - path: shopify-list-products.py
+  - path: shopify-customers.py
+  - path: shopify-products.py
 prompts:
   - element: auth
     name: auth
