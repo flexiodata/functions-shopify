@@ -1,8 +1,8 @@
 
 # ---
-# name: shopify-list-products
+# name: shopify-products
 # deployed: true
-# title: Shopify Products List
+# title: Shopify Products
 # description: Returns a list of products from Shopify
 # params:
 #   - name: properties
