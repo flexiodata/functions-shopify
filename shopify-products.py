@@ -2,6 +2,7 @@
 # ---
 # name: shopify-products
 # deployed: true
+# config: index
 # title: Shopify Products
 # description: Returns a list of products from Shopify
 # params:
@@ -9,244 +10,219 @@
 #     type: array
 #     description: The properties to return (defaults to all properties). See "Returns" for a listing of the available properties.
 #     required: false
-# returns:
-#   - name: id
+#   - name: filter
 #     type: string
-#     description: A unique identifier for the product.
+#     description: Filter to apply with key/values specified as a URL query string where the keys correspond to the properties to filter.
+#     required: false
+# params:
+#   - name: id
+#     type: integer
+#     description: The unique identifer for the product
 #   - name: title
 #     type: string
-#     description: The name of the product.
+#     description: The title for the product
 #   - name: body_html
 #     type: string
-#     description: A description of the product. Supports HTML formatting.
-#   - name: vendor
-#     type: string
-#     description: The name of the product's vendor.
-#   - name: product_type
-#     type: string
-#     description: A categorization for the product used for filtering and searching products.
-#   - name: created_at
-#     type: string
-#     description: The date and time (ISO 8601 format) when the product was created.
+#     description: A description of the product
 #   - name: handle
 #     type: string
-#     description: A unique human-friendly string for the product. Automatically generated from the product's **title**.
+#     description: A human-friendly string for the product
+#   - name: vendor
+#     type: string
+#     description: The name of the vendor of the product
+#   - name: product_type
+#     type: string
+#     description: A categorization of the product used for filtering and searching products
+#   - name: created_at
+#     type: string
+#     description: The date the product was created
 #   - name: updated_at
 #     type: string
-#     description: The date and time (ISO 8601 format) when the product was last modified.
+#     description: The date the product was last updated
 #   - name: published_at
 #     type: string
-#     description: The date and time (ISO 8601 format) when the product was published.
-#   - name: tags
-#     type: string
-#     description: A string of comma-separated tags that are used for filtering and search.
+#     description: The date the product was published
 #   - name: published_scope
 #     type: string
-#     description: Whether the product is published to the Point of Sale channel; one of **web** or **global**
-#   - name: product_id
+#     description: The channel to which the product is published
+#   - name: template_suffix
 #     type: string
-#     description: The unique numeric identifier for the product.
-#   - name: price
+#     description: The suffix of the Liquid tempate used for the product page
+#   - name: tags
 #     type: string
-#     description: The price of the product variant.
+#     description: A comma-separated list of tags that are used for filtering and searching products
+#   - name: variant_id
+#     type: integer
+#     description: The unique identifier for a product variant
+#   - name: variant_title
+#     type: string
+#     description: The title of the product variant
+#   - name: variant_option1
+#     type: string
+#     description: A custom property used to define product variants
+#   - name: variant_option2
+#     type: string
+#     description: A custom property used to define product variants
+#   - name: variant_option3
+#     type: string
+#     description: A custom property used to define product variants
+#   - name: variant_created_at
+#     type: string
+#     description: The date the product variant was created
+#   - name: variant_updated_at
+#     type: string
+#     description: The date the product variant was last updated
 #   - name: sku
 #     type: string
-#     description: A unique identifier for the product variant in the shop.
-#   - name: inventory_policy
-#     type: string
-#     description: Whether customers are allowed to place an order for the product variant when it's out of stock; one of **deny** or **continue**
-#   - name: compare_at_price
-#     type: string
-#     description: The original price of the item before an adjustment or a sale.
-#   - name: taxable
-#     type: string
-#     description: Whether a tax is charged when the product variant is sold.
+#     description: A unique identifier for the product variant in the shop
 #   - name: barcode
 #     type: string
-#     description: The barcode, UPC, or ISBN number for the product.
+#     description: The barcode, UPC, or ISBN number for a product variant
+#   - name: price
+#     type: number
+#     description: The price of the product variant
+#   - name: compare_at_price
+#     type: number
+#     description: The original price of the product variant before an adjustment or a sale
+#   - name: inventory_policy
+#     type: string
+#     description: Whether or not customers are allowed to place an order for out-of-stock product variants
+#   - name: inventory_management
+#     type: string
+#     description: The fullfillment service that tracks the number of items in tock for the product variant
+#   - name: fulfillment_service
+#     type: string
+#     description: The fullfillment service associated with the product variant
+#   - name: taxable
+#     type: boolean
+#     description: Whether or not a tax is charged when the product variant is sold
 #   - name: grams
-#     type: string
-#     description: The weight of the product variant in grams.
+#     type: number
+#     description: The weight of the product variant in grams
 #   - name: weight
-#     type: string
-#     description: The weight of the product variant in the unit system specified with **weight_unit**.
+#     type: number
+#     description: The weight of the product variant in the units given by weight_unit
 #   - name: weight_unit
 #     type: string
-#     description: The unit of measurement that applies to the product variant's weight.
+#     description: The unit of measurement that applies to the weight of the product variant
 #   - name: inventory_item_id
-#     type: string
-#     description: The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
+#     type: integer
+#     description: The unique identifier for the product variant in inventory
 #   - name: inventory_quantity
+#     type: integer
+#     description: The total inventory for the product variant across all locations
+#   - name: image_id
+#     type: integer
+#     description: The unique identifier for an image for the product
+#   - name: image_created_at
 #     type: string
-#     description: An aggregate of inventory across all locations.
-#   - name: requires_shipping
+#     description: The date the image for the product was created
+#   - name: image_udpated_at
 #     type: string
-#     description: Whether a customer needs to provide a shipping address when placing an order for the product variant.
+#     description: The date the image for the product was last updated
+#   - name: image_width
+#     type: integer
+#     description: The width of the image for the product
+#   - name: image_height
+#     type: integer
+#     description: The height of the image for the product
+#   - name: image_src
+#     type: string
+#     description: A link to the image for the product
 # examples:
+#   - '""'
+#   - '"id, title, sku, price"'
 # ---
 
 import json
-import requests
 import urllib
-import itertools
+import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 from datetime import *
-from cerberus import Validator
+from decimal import *
 from collections import OrderedDict
 
 # main function entry point
 def flexio_handler(flex):
 
-    # get the api key from the variable input
-    auth_token = dict(flex.vars).get('shopify_connection',{}).get('access_token')
-    if auth_token is None:
-        flex.output.content_type = "application/json"
-        flex.output.write([[""]])
-        return
-
-    # get the company domain from the variable input
-    api_base_uri = dict(flex.vars).get('shopify_connection',{}).get('api_base_uri')
-    if api_base_uri is None:
-        flex.output.content_type = "application/json"
-        flex.output.write([[""]])
-        return
-
-    # get the input
-    input = flex.input.read()
-    try:
-        input = json.loads(input)
-        if not isinstance(input, list): raise ValueError
-    except ValueError:
-        raise ValueError
-
-    # define the expected parameters and map the values to the parameter names
-    # based on the positions of the keys/values
-    params = OrderedDict()
-    params['properties'] = {'required': False, 'validator': validator_list, 'coerce': to_list, 'default': '*'}
-    input = dict(zip(params.keys(), input))
-
-    # validate the mapped input against the validator
-    # if the input is valid return an error
-    v = Validator(params, allow_unknown = True)
-    input = v.validated(input)
-    if input is None:
-        raise ValueError
-
-    # map this function's property names to the API's property names
-    property_map = OrderedDict()
-    property_map['id'] = 'id'
-    property_map['title'] = 'title'
-    property_map['body_html'] = 'body_html'
-    property_map['vendor'] = 'vendor'
-    property_map['product_type'] = 'product_type'
-    property_map['created_at'] = 'created_at'
-    property_map['handle'] = 'handle'
-    property_map['updated_at'] = 'updated_at'
-    property_map['published_at'] = 'published_at'
-    #property_map['template_suffix'] = 'template_suffix'
-    property_map['tags'] = 'tags'
-    property_map['published_scope'] = 'published_scope'
-
-    # these all come from nested first element values in the 'variants' array
-    property_map['product_id'] = 'variants[0].product_id'
-    property_map['price'] = 'variants[0].price'
-    property_map['sku'] = 'variants[0].sku'
-    #property_map['position'] = 'variants[0].position'
-    property_map['inventory_policy'] = 'variants[0].inventory_policy'
-    property_map['compare_at_price'] = 'variants[0].compare_at_price'
-    #property_map['fulfillment_service'] = 'variants[0].fulfillment_service'
-    #property_map['inventory_management'] = 'variants[0].inventory_management'
-    property_map['taxable'] = 'variants[0].taxable'
-    property_map['barcode'] = 'variants[0].barcode'
-    property_map['grams'] = 'variants[0].grams'
-    property_map['weight'] = 'variants[0].weight'
-    property_map['weight_unit'] = 'variants[0].weight_unit'
-    property_map['inventory_item_id'] = 'variants[0].inventory_item_id'
-    property_map['inventory_quantity'] = 'variants[0].inventory_quantity'
-    #property_map['old_inventory_quantity'] = 'variants[0].old_inventory_quantity'
-    property_map['requires_shipping'] = 'variants[0].requires_shipping'
-
-
-
-    try:
-
-        # list of this function's properties we'd like to query
-        properties = [p.lower().strip() for p in input['properties']]
-
-        # if we have a wildcard, get all the properties
-        if len(properties) == 1 and properties[0] == '*':
-            properties = list(property_map.keys())
-
-        # list of the Shopify properties we'd like to query
-        shopify_properties = [property_map[p] for p in properties]
-
-        # see here for more info:
-        # https://help.shopify.com/en/api/reference/products/product#index-2019-10
-        url = api_base_uri + '/admin/api/2019-10/products.json'
-        headers = {
-            'X-Shopify-Access-Token': auth_token
-        }
-
-        # get the response data as a JSON object
-        response = requests.get(url, headers=headers)
-        content = response.json()
-
-        # return the info
-        result = []
-        result.append(properties)
-
-        # build up each row and append it to the result
-        products = content.get('products',[])
-        for product in products:
-            row = []
-            for p in shopify_properties:
-                row.append(deep_get(product,p,'') or '')
-            result.append(row)
-
-        # return the results
-        result = json.dumps(result, default=to_string)
-        flex.output.content_type = "application/json"
+    flex.output.content_type = 'application/x-ndjson'
+    for item in get_data(flex.vars):
+        result = json.dumps(item, default=to_string) + "\n"
         flex.output.write(result)
 
-    except:
-        raise RuntimeError
+def get_data(params):
 
-def safe_list_get(_list, idx, default):
-    try:
-        return _list[idx]
-    except IndexError:
-        return default
+    # get the api key and company domain from the variable input
+    auth_token = dict(params).get('shopify_connection',{}).get('access_token')
+    api_base_uri = dict(params).get('shopify_connection',{}).get('api_base_uri')
 
-def deep_get(obj, path, default=None):
-    try:
-        keys = path.split('.')
-        for key in keys:
-            if key.find('[') >= 0:
-                parts = key.split('[')
-                key = parts[0]
-                obj = obj.get(key, default)
-                if isinstance(obj, list):
-                    idx = int(parts[1].strip(']'))
-                    obj = safe_list_get(obj, idx, default)
-                else:
-                    return default
-            elif isinstance(obj, dict):
-                obj = obj.get(key, default)
+    # see here for more info:
+    # https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2020-04
+    # https://shopify.dev/tutorials/make-paginated-requests-to-rest-admin-api
+
+    headers = {
+        'X-Shopify-Access-Token': auth_token
+    }
+    url = api_base_uri + '/admin/api/2020-04/products.json'
+
+    page_size = 250
+    url_query_params = {'limit': page_size}
+    url_query_str = urllib.parse.urlencode(url_query_params)
+    page_url = url + '?' + url_query_str
+
+    while True:
+
+        response = requests_retry_session().get(page_url, headers=headers)
+        response.raise_for_status()
+        content = response.json()
+        data = content.get('products',[])
+
+        if len(data) == 0: # sanity check in case there's an issue with cursor
+            break
+
+        # build up each row and append it to the result
+        for header_item in data:
+            detail_items_all =  header_item.get('variants',[])
+            if len(detail_items_all) == 0:
+                yield get_item_info(header_item, {}) # if we don't have any variants, make sure to return item header info
             else:
-                return default
-        return obj
+                for detail_item in detail_items_all:
+                    yield get_item_info(header_item, detail_item)
 
-    except:
-        return default
+        page_url = response.links.get('next',{}).get('url')
+        if page_url is None:
+            break
 
-def validator_list(field, value, error):
-    if isinstance(value, str):
-        return
-    if isinstance(value, list):
-        for item in value:
-            if not isinstance(item, str):
-                error(field, 'Must be a list with only string values')
-        return
-    error(field, 'Must be a string or a list of strings')
+def requests_retry_session(
+    retries=3,
+    backoff_factor=0.3,
+    status_forcelist=(500, 502, 504),
+    session=None,
+):
+    session = session or requests.Session()
+    retry = Retry(
+        total=retries,
+        read=retries,
+        connect=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=status_forcelist,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+    return session
+
+def to_date(value):
+    # TODO: convert if needed
+    return value
+
+def to_number(value):
+    try:
+        v = value
+        return float(v)
+    except ValueError:
+        return value
 
 def to_string(value):
     if isinstance(value, (date, datetime)):
@@ -257,11 +233,52 @@ def to_string(value):
         return str(value)
     return value
 
-def to_list(value):
-    # if we have a list of strings, create a list from them; if we have
-    # a list of lists, flatten it into a single list of strings
-    if isinstance(value, str):
-        return value.split(",")
-    if isinstance(value, list):
-        return list(itertools.chain.from_iterable(value))
-    return None
+def get_item_info(header_item, detail_item):
+
+    # map this function's property names to the API's property names
+    info = OrderedDict()
+
+    info['id'] = header_item.get('id')
+    info['title'] = header_item.get('title')
+    info['body_html'] = header_item.get('body_html')
+    info['handle'] = header_item.get('handle')
+    info['vendor'] = header_item.get('vendor')
+    info['product_type'] = header_item.get('product_type')
+    info['created_at'] = to_date(header_item.get('created_at'))
+    info['updated_at'] = to_date(header_item.get('updated_at'))
+    info['published_at'] = to_date(header_item.get('published_at'))
+    info['published_scope'] = header_item.get('published_scope')
+    info['template_suffix'] = header_item.get('template_suffix')
+    info['tags'] = header_item.get('tags')
+    info['variant_id'] = detail_item.get('variant_id')
+    info['variant_title'] = detail_item.get('title')
+    info['variant_option1'] = detail_item.get('option1')
+    info['variant_option2'] = detail_item.get('option2')
+    info['variant_option3'] = detail_item.get('option3')
+    info['variant_created_at'] = to_date(detail_item.get('created_at'))
+    info['variant_updated_at'] = to_date(detail_item.get('updated_at'))
+    info['sku'] = detail_item.get('sku')
+    info['barcode'] = detail_item.get('barcode')
+    info['price'] = to_number(detail_item.get('price'))
+    info['compare_at_price'] = to_number(detail_item.get('compare_at_price'))
+    info['inventory_policy'] = detail_item.get('inventory_policy')
+    info['inventory_management'] = detail_item.get('inventory_management')
+    info['fulfillment_service'] = detail_item.get('fulfillment_service')
+    info['taxable'] = detail_item.get('taxable')
+    info['grams'] = detail_item.get('grams')
+    info['weight'] = detail_item.get('weight')
+    info['weight_unit'] = detail_item.get('weight_unit')
+    info['inventory_item_id'] = detail_item.get('inventory_item_id')
+    info['inventory_quantity'] = detail_item.get('inventory_quantity')
+    info['image_id'] = header_item.get('image').get('id')
+    info['image_created_at'] = to_date(header_item.get('image').get('created_at'))
+    info['image_udpated_at'] = to_date(header_item.get('image').get('updated_at'))
+    info['image_width'] = header_item.get('image').get('width')
+    info['image_height'] = header_item.get('image').get('height')
+    info['image_src'] = header_item.get('image').get('src')
+
+    return info
+
+
+
+
