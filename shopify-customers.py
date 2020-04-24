@@ -120,12 +120,15 @@
 #   - name: address_country
 #     type: string
 #     description: The country of the default address for the customer
-#   - name: address_country_name
-#     type: string
-#     description: The normalized country name of the default address for the customer
 #   - name: address_country_code
 #     type: string
 #     description: The country code of the default address for the customer
+#   - name: address_country_name
+#     type: string
+#     description: The normalized country name of the default address for the customer
+#   - name: address_default
+#     type: boolean
+#     description: Whether or not the address is the default address for the customer
 # examples:
 #   - '""'
 #   - '"id, email, first_name, last_name"'
@@ -178,9 +181,13 @@ def get_data(params):
         if len(data) == 0: # sanity check in case there's an issue with cursor
             break
 
-        # build up each row and append it to the result
-        for item in data:
-            yield get_item_info(item)
+        for header_item in data:
+            detail_items_all =  header_item.get('addresses',[])
+            if len(detail_items_all) == 0:
+                yield get_item_info(header_item, {}) # if we don't have any variants, make sure to return item header info
+            else:
+                for detail_item in detail_items_all:
+                    yield get_item_info(header_item, detail_item)
 
         page_url = response.links.get('next',{}).get('url')
         if page_url is None:
@@ -225,47 +232,48 @@ def to_string(value):
         return str(value)
     return value
 
-def get_item_info(item):
+def get_item_info(header_item, detail_item):
 
     # map this function's property names to the API's property names
     info = OrderedDict()
 
-    info['id'] = item.get('id')
-    info['first_name'] = item.get('first_name')
-    info['last_name'] = item.get('last_name')
-    info['email'] = item.get('email')
-    info['verified_email'] = item.get('verified_email')
-    info['phone'] = item.get('phone')
-    info['created_at'] = to_date(item.get('created_at'))
-    info['updated_at'] = to_date(item.get('updated_at'))
-    info['state'] = item.get('state')
-    info['tax_exempt'] = item.get('tax_exempt')
-    info['tax_exemptions'] = ', '.join(item.get('tax_exemptions',[])) # convert to comma-delimited string; space follows api convention in tags property
-    info['orders_count'] = item.get('orders_count')
-    info['total_spent'] = to_number(item.get('total_spent'))
-    info['currency'] = item.get('currency')
-    info['last_order_id'] = item.get('last_order_id')
-    info['last_order_name'] = item.get('last_order_name')
-    info['accepts_marketing'] = item.get('accepts_marketing')
-    info['marketing_opt_in_level'] = item.get('marketing_opt_in_level')
-    info['accepts_marketing_updated_at'] = to_date(item.get('accepts_marketing_updated_at'))
-    info['note'] = item.get('note')
-    info['tags'] = item.get('tags')
-    info['address_id'] = item.get('default_address',{}).get('id')
-    info['address_customer_id'] = item.get('default_address',{}).get('customer_id')
-    info['address_first_name'] = item.get('default_address',{}).get('first_name')
-    info['address_last_name'] = item.get('default_address',{}).get('last_name')
-    info['address_name'] = item.get('default_address',{}).get('name')
-    info['address_phone'] = item.get('default_address',{}).get('phone')
-    info['address_company'] = item.get('default_address',{}).get('company')
-    info['address_street1'] = item.get('default_address',{}).get('address1')
-    info['address_street2'] = item.get('default_address',{}).get('address2')
-    info['address_city'] = item.get('default_address',{}).get('city')
-    info['address_province'] = item.get('default_address',{}).get('province')
-    info['address_province_code'] = item.get('default_address',{}).get('province_code')
-    info['address_zip'] = item.get('default_address',{}).get('zip')
-    info['address_country'] = item.get('default_address',{}).get('country')
-    info['address_country_name'] = item.get('default_address',{}).get('country_name')
-    info['address_country_code'] = item.get('default_address',{}).get('country_code')
+    info['id'] = header_item.get('id')
+    info['first_name'] = header_item.get('first_name')
+    info['last_name'] = header_item.get('last_name')
+    info['email'] = header_item.get('email')
+    info['verified_email'] = header_item.get('verified_email')
+    info['phone'] = header_item.get('phone')
+    info['created_at'] = to_date(header_item.get('created_at'))
+    info['updated_at'] = to_date(header_item.get('updated_at'))
+    info['state'] = header_item.get('state')
+    info['tax_exempt'] = header_item.get('tax_exempt')
+    info['tax_exemptions'] = ', '.join(header_item.get('tax_exemptions',[])) # convert to comma-delimited string; space follows api convention in tags property
+    info['orders_count'] = header_item.get('orders_count')
+    info['total_spent'] = to_number(header_item.get('total_spent'))
+    info['currency'] = header_item.get('currency')
+    info['last_order_id'] = header_item.get('last_order_id')
+    info['last_order_name'] = header_item.get('last_order_name')
+    info['accepts_marketing'] = header_item.get('accepts_marketing')
+    info['marketing_opt_in_level'] = header_item.get('marketing_opt_in_level')
+    info['accepts_marketing_updated_at'] = to_date(header_item.get('accepts_marketing_updated_at'))
+    info['note'] = header_item.get('note')
+    info['tags'] = header_item.get('tags')
+    info['address_id'] = detail_item.get('id')
+    info['address_customer_id'] = detail_item.get('customer_id')
+    info['address_first_name'] = detail_item.get('first_name')
+    info['address_last_name'] = detail_item.get('last_name')
+    info['address_name'] = detail_item.get('name')
+    info['address_phone'] = detail_item.get('phone')
+    info['address_company'] = detail_item.get('company')
+    info['address_street1'] = detail_item.get('address1')
+    info['address_street2'] = detail_item.get('address2')
+    info['address_city'] = detail_item.get('city')
+    info['address_province'] = detail_item.get('province')
+    info['address_province_code'] = detail_item.get('province_code')
+    info['address_zip'] = detail_item.get('zip')
+    info['address_country'] = detail_item.get('country')
+    info['address_country_code'] = detail_item.get('country_code')
+    info['address_country_name'] = detail_item.get('country_name')
+    info['address_default'] = detail_item.get('default')
 
     return info
