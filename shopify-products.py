@@ -14,7 +14,7 @@
 #     type: string
 #     description: Filter to apply with key/values specified as a URL query string where the keys correspond to the properties to filter.
 #     required: false
-# params:
+# returns:
 #   - name: id
 #     type: integer
 #     description: The unique identifer for the product
