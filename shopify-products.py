@@ -181,7 +181,6 @@ def get_data(params):
         if len(data) == 0: # sanity check in case there's an issue with cursor
             break
 
-        # build up each row and append it to the result
         for header_item in data:
             detail_items_all =  header_item.get('variants',[])
             if len(detail_items_all) == 0:
