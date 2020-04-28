@@ -1,11 +1,37 @@
 title: Shopify
 description: Functions for accessing your Shopify info
+
 image:
   src: https://static.flex.io/assets/logos2/shopify.png
   alt: Shopify logo
+
 functions:
   - path: shopify-customers.py
   - path: shopify-products.py
+
+templates:
+  - name: lookup-customers
+    title: Lookup customers for your store
+    description: Get information about customers for your store
+    gsheets_spreadsheet_id: ''
+    excel_spreadsheet_path: ''
+    in_production: false
+    in_staging: false
+  - name: lookup-orders
+    title: Lookup orders for your store
+    description: Search and filter current orders for your store
+    gsheets_spreadsheet_id: ''
+    excel_spreadsheet_path: ''
+    in_production: false
+    in_staging: false
+  - name: lookup-products
+    title: Lookup products in your store
+    description: "Search and filter your store's product catalog"
+    gsheets_spreadsheet_id: ''
+    excel_spreadsheet_path: ''
+    in_production: false
+    in_staging: false
+
 prompts:
   - element: auth
     name: auth
