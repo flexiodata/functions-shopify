@@ -147,9 +147,8 @@ from collections import OrderedDict
 def flexio_handler(flex):
 
     flex.output.content_type = 'application/x-ndjson'
-    for item in get_data(flex.vars):
-        result = json.dumps(item, default=to_string) + "\n"
-        flex.output.write(result)
+    for data in get_data(flex.vars):
+        flex.output.write(data)
 
 def get_data(params):
 
@@ -181,13 +180,17 @@ def get_data(params):
         if len(data) == 0: # sanity check in case there's an issue with cursor
             break
 
+        buffer = ''
         for header_item in data:
             detail_items_all =  header_item.get('variants',[])
             if len(detail_items_all) == 0:
-                yield get_item_info(header_item, {}) # if we don't have any variants, make sure to return item header info
+                item = get_item_info(header_item, {}) # if we don't have any variants, make sure to return item header info
+                buffer = buffer + json.dumps(item, default=to_string) + "\n"
             else:
                 for detail_item in detail_items_all:
-                    yield get_item_info(header_item, detail_item)
+                    item = get_item_info(header_item, detail_item)
+                    buffer = buffer + json.dumps(item, default=to_string) + "\n"
+        yield buffer
 
         page_url = response.links.get('next',{}).get('url')
         if page_url is None:
