@@ -16,22 +16,22 @@ templates:
     description: Get information about customers for your store
     gsheets_spreadsheet_id: '1y5E-Mm43kWPQoWNrj3VDcH0bRwKvzxy9-iKLaSv_N_k'
     excel_spreadsheet_path: 'https://static.flex.io/templates/shopify/shopify-search-and-filter-customers.xlsx'
-    in_production: true
-    in_staging: false
+    is_public: true
+    is_private: false
   - name: lookup-orders
     title: Lookup orders for your store
     description: Search and filter current orders for your store
     gsheets_spreadsheet_id: '1c88owWhveUJoyaeky8o55x5WcIdZCavFobWAcQu2Iso'
     excel_spreadsheet_path: 'https://static.flex.io/templates/shopify/shopify-search-and-filter-orders.xlsx'
-    in_production: true
-    in_staging: false
+    is_public: true
+    is_private: false
   - name: lookup-products
     title: Lookup products in your store
     description: "Search and filter your store's product catalog"
     gsheets_spreadsheet_id: '1rE24hWJ7ciRFMBEQcnBCx4Mg8LfN_kkMRq3miN-PXtc'
     excel_spreadsheet_path: 'https://static.flex.io/templates/shopify/shopify-search-and-filter-products.xlsx'
-    in_production: true
-    in_staging: false
+    is_public: true
+    is_private: false
 
 prompts:
   - element: auth
